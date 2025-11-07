@@ -1,0 +1,61 @@
+HydraContext Sample Document
+
+This is a sample document demonstrating HydraContext's capabilities. It contains both prose and code to showcase the intelligent segmentation and classification features.
+
+Introduction to Natural Language Processing
+
+Natural language processing (NLP) is a fascinating field that combines linguistics and computer science. It enables computers to understand, interpret, and generate human language. Modern NLP systems use machine learning techniques to achieve impressive results.
+
+Example Code Block
+
+Here's a simple Python function that demonstrates text processing:
+
+```python
+def tokenize(text):
+    """Split text into words."""
+    return text.split()
+
+def count_words(text):
+    """Count words in text."""
+    tokens = tokenize(text)
+    return len(tokens)
+
+# Example usage
+sample = "Hello, world!"
+print(f"Word count: {count_words(sample)}")
+```
+
+The code above shows basic tokenization. In practice, you'd want more sophisticated methods.
+
+Key Concepts
+
+The main components of an NLP system include:
+
+- Tokenization: Breaking text into words or subwords
+- Part-of-speech tagging: Identifying grammatical roles
+- Named entity recognition: Finding names, places, etc.
+- Sentiment analysis: Determining emotional tone
+- Machine translation: Converting between languages
+
+Each of these tasks requires different techniques and models. Modern systems often use transformer architectures.
+
+Another Code Example
+
+Here's JSON data structure:
+
+```json
+{
+  "name": "HydraContext",
+  "version": "0.1.0",
+  "features": ["segmentation", "classification", "deduplication"],
+  "dependencies": []
+}
+```
+
+This JSON structure could be used for configuration. Notice how HydraContext can distinguish it from prose.
+
+Conclusion
+
+HydraContext makes it easy to process mixed content. Whether you're working with documentation, code repositories, or general text, it provides the tools you need.
+
+The library's zero-dependency design means you can use it anywhere. Try it out today!
