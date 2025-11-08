@@ -35,6 +35,24 @@ HydraContext is a robust Python library for text segmentation, classification, a
   - No external dependencies required
   - Python 3.8+ compatible
 
+- **🚀 Streaming Mode**
+  - Memory-efficient processing for large files (>50MB)
+  - Automatic detection or manual control
+  - Progress callbacks for long operations
+  - Configurable chunk sizes
+
+- **🔍 Input Validation**
+  - File existence and readability checks
+  - Encoding validation
+  - Parameter validation
+  - Helpful error messages
+
+- **📝 Logging Support**
+  - Configurable log levels (DEBUG, INFO, WARNING, ERROR)
+  - File and console logging
+  - Detailed operation tracking
+  - Debug mode for troubleshooting
+
 ## Installation
 
 ### From Source
@@ -67,6 +85,18 @@ hydracontext process input.txt -o output.jsonl --cache cache.jsonl
 
 # Disable classification
 hydracontext process input.txt -o output.jsonl --no-classify
+
+# Enable debug logging
+hydracontext process input.txt -o output.jsonl --log-level DEBUG
+
+# Force streaming mode for large files
+hydracontext process large_file.txt -o output.jsonl --streaming
+
+# Save logs to file
+hydracontext process input.txt -o output.jsonl --log-file processing.log
+
+# Custom streaming threshold (100MB)
+hydracontext process input.txt -o output.jsonl --streaming-threshold 100
 ```
 
 ### Python API
@@ -188,6 +218,112 @@ deduplicator.save_cache(Path('cache.jsonl'))
 - Persistent JSONL cache
 - Statistics tracking
 - Export to CSV or JSONL
+
+### 4. Streaming Mode for Large Files
+
+Process large files efficiently without loading them entirely into memory.
+
+```python
+from pathlib import Path
+from hydracontext.utils.streaming import StreamingProcessor
+
+# Create streaming processor
+processor = StreamingProcessor(
+    chunk_size=1024 * 1024,  # 1MB chunks
+    granularity='sentence',
+    classify=True,
+    deduplicate=True,
+    cache_path=Path('cache.jsonl')
+)
+
+# Process large file
+def progress_callback(progress):
+    print(f"Progress: {progress['percent']:.1f}%")
+
+stats = processor.process_file_streaming(
+    input_path=Path('large_file.txt'),
+    output_path=Path('output.jsonl'),
+    progress_callback=progress_callback
+)
+
+print(f"Processed {stats['segments_processed']} segments")
+print(f"Written {stats['segments_written']} unique segments")
+```
+
+**Streaming Features:**
+- Automatic mode selection based on file size
+- Configurable chunk sizes
+- Progress tracking callbacks
+- Memory-efficient processing
+- Same deduplication and classification features
+
+### 5. Input Validation
+
+Validate files and parameters before processing.
+
+```python
+from pathlib import Path
+from hydracontext.utils.validation import (
+    validate_file_readable,
+    validate_file_writable,
+    validate_text_encoding,
+    validate_granularity,
+    ValidationError,
+)
+
+try:
+    # Validate input file
+    validate_file_readable(Path('input.txt'))
+    validate_text_encoding(Path('input.txt'), encoding='utf-8')
+
+    # Validate output path
+    validate_file_writable(Path('output.jsonl'))
+
+    # Validate parameters
+    validate_granularity('sentence')
+
+    # Process file...
+
+except ValidationError as e:
+    print(f"Validation failed: {e}")
+```
+
+**Validation Features:**
+- File existence and readability checks
+- Encoding validation
+- Parameter validation (granularity, hash algorithms, thresholds)
+- File size limits
+- Clear error messages
+
+### 6. Logging
+
+Configure logging for detailed operation tracking.
+
+```python
+from pathlib import Path
+from hydracontext.utils.logging import setup_logging, get_logger
+
+# Setup logging
+setup_logging(
+    level='DEBUG',  # DEBUG, INFO, WARNING, ERROR
+    log_file=Path('hydracontext.log')
+)
+
+# Get logger for your module
+logger = get_logger(__name__)
+
+logger.info("Starting processing")
+logger.debug("Detailed debug information")
+logger.warning("Warning message")
+logger.error("Error occurred")
+```
+
+**Logging Features:**
+- Multiple log levels
+- Console and file logging
+- Structured log messages
+- Per-module loggers
+- Integration with CLI
 
 ## Integration with Hydra Memory Layer
 
@@ -348,18 +484,69 @@ This demonstrates:
 - Deduplication
 - Full processing pipeline
 
-## Running Tests
+## Development
+
+### Running Tests
 
 ```bash
 # Install development dependencies
 pip install -e ".[dev]"
 
-# Run tests
+# Run all tests
 pytest tests/ -v
 
-# With coverage
-pytest tests/ --cov=hydracontext --cov-report=html
+# Run with coverage
+pytest tests/ --cov=hydracontext --cov-report=html --cov-report=term-missing
+
+# Run specific test file
+pytest tests/test_classifier.py -v
+
+# Run with debugging
+pytest tests/ -v -s --log-cli-level=DEBUG
 ```
+
+### Pre-commit Hooks
+
+The project uses pre-commit hooks for code quality:
+
+```bash
+# Install pre-commit
+pip install pre-commit
+
+# Set up git hooks
+pre-commit install
+
+# Run hooks manually on all files
+pre-commit run --all-files
+
+# Run specific hook
+pre-commit run black --all-files
+```
+
+**Hooks included:**
+- **Black**: Code formatting
+- **isort**: Import sorting
+- **flake8**: Linting
+- **mypy**: Type checking
+- **bandit**: Security scanning
+- **File checks**: Trailing whitespace, file size, etc.
+
+### Continuous Integration
+
+GitHub Actions automatically runs tests on:
+- Python 3.8, 3.9, 3.10, 3.11, 3.12
+- All pull requests
+- Pushes to main/develop branches
+
+**CI Pipeline includes:**
+- Unit tests with coverage
+- Linting and formatting checks
+- Type checking
+- Security scanning
+- Package building
+- Integration tests
+
+View the workflow: `.github/workflows/ci.yml`
 
 ## Configuration
 
