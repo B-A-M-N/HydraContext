@@ -1,0 +1,22 @@
+# HydraContext Requirements
+# Core dependencies for text processing and CLI
+
+# No external dependencies required for core functionality!
+# HydraContext uses only Python standard library for maximum portability.
+
+# Optional dependencies for enhanced functionality:
+# Uncomment if needed for your use case
+
+# For better performance with large files
+# xxhash>=3.0.0
+
+# For advanced NLP features (optional)
+# nltk>=3.8.0
+# spacy>=3.7.0
+
+# For testing and development
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
+# black>=23.0.0
+# flake8>=6.0.0
+# mypy>=1.5.0
