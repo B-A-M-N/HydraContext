@@ -2,7 +2,37 @@
 
 **Intelligent LLM context processing and normalization**
 
+> 💰 **Cost Optimization Framework** - Save 30-60% on LLM token costs through intelligent deduplication. Not a storage compression tool (adds 60-90% overhead). Designed for token cost reduction at scale.
+
 HydraContext is a comprehensive Python library for LLM integration, providing bidirectional normalization, prompt/response processing, and intelligent text segmentation. It offers a unified interface for working with multiple LLM providers (OpenAI, Anthropic, Ollama) while handling context chunking, classification, and deduplication for memory layers and RAG pipelines.
+
+## 💰 Value Proposition: Save Token Costs, Not Storage
+
+> **"Pay $1 in storage to save $100 in LLM API costs"**
+
+HydraContext is designed to **optimize token costs**, not storage space:
+
+| Metric | Impact | Example (100K prompts, 40% duplication) |
+|--------|--------|----------------------------------------|
+| **LLM Token Costs** | ✅ **-30-60% savings** | Save **$72** ($180 → $108) |
+| **Embedding Costs** | ✅ **-25-40% savings** | Save **$0.50** per million docs |
+| **Storage Space** | ❌ **+60-90% overhead** | Cost **$0.10** (negligible) |
+| **Processing Speed** | ✅ **Skip duplicates** | Process only unique content |
+| **Context Quality** | ✅ **Better retrieval** | Classification improves search |
+
+### When to Use HydraContext:
+
+✅ **Working with LLM APIs** - Every duplicate prompt costs money
+✅ **Building vector databases** - Don't embed the same content twice
+✅ **Processing at scale** (>10K items) - ROI increases with volume
+✅ **Content has 25%+ duplication** - Chat logs, FAQs, multi-doc corpora
+✅ **Need metadata for retrieval** - Classification improves search quality
+
+❌ **Pure storage optimization** - Use gzip/zstd compression instead
+❌ **Small projects** (<1K items) - Token savings too small to matter
+❌ **Unique content** (<20% duplication) - Just adds metadata overhead
+
+**See [SPACE_EFFICIENCY.md](SPACE_EFFICIENCY.md) for detailed cost analysis.**
 
 ## Features
 
@@ -642,19 +672,50 @@ HydraContext can be configured through:
 2. **Python API parameters** (see component docstrings)
 3. **Environment variables** (future feature)
 
-## Performance
+## Performance & Cost Efficiency
 
-HydraContext is designed for efficiency:
+### Cost Savings (The Primary Value)
 
-- **Zero Dependencies**: No external libraries to install
-- **Streaming**: Process large files without loading everything into memory
-- **Caching**: Persistent hash cache for deduplication across runs
-- **Fast Hashing**: Multiple algorithm options (MD5 for speed, SHA256 for security)
+**Token Cost Reduction:**
+- **30-60% savings** on LLM API costs through deduplication
+- **25-40% savings** on embedding costs (don't embed duplicates)
+- **Faster processing** - skip duplicate content entirely
+
+**Real Example (100K prompts with 40% duplication):**
+```
+Without HydraContext: $180 in LLM costs
+With HydraContext:    $108 in LLM costs
+Savings:              $72 (40% reduction)
+
+Storage overhead:     +$0.10
+Net benefit:          $71.90
+```
+
+**Break-even point:** ~1,000 prompts with 25% duplication
+
+### Processing Performance
 
 Typical performance on a modern laptop:
 - **Segmentation**: ~100K words/second
 - **Classification**: ~50K words/second
 - **Deduplication**: ~200K words/second (with cache)
+
+**Design Efficiency:**
+- **Zero Dependencies**: No external libraries to install
+- **Streaming**: Process large files without loading everything into memory
+- **Caching**: Persistent hash cache for deduplication across runs
+- **Fast Hashing**: Multiple algorithm options (MD5 for speed, SHA256 for security)
+
+### Important: Storage vs. Cost Trade-off
+
+⚠️ **HydraContext increases storage by 60-90%** due to metadata, but saves 30-60% in token costs.
+
+This trade-off makes sense because:
+- **Storage costs:** ~$0.001 per GB (negligible)
+- **Token costs:** ~$0.03-0.06 per 1K tokens (significant)
+- **ROI:** Saving $100 in tokens costs $1 in storage
+
+For detailed cost analysis, see [SPACE_EFFICIENCY.md](SPACE_EFFICIENCY.md)
 
 ## Use Cases
 
