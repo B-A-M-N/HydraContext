@@ -1,0 +1,184 @@
+
+██████████████████████████████████████████████████████████████████████
+  REAL CODEBASE DEDUPLICATION ANALYSIS
+  Verifying HydraContext claims with actual data
+██████████████████████████████████████████████████████████████████████
+
+======================================================================
+Analyzing: HydraContext
+======================================================================
+
+📁 Files found: 53
+📊 Total content: 397,462 bytes (0.38 MB)
+
+🔍 TEST 1: Line-Level Deduplication (Prompt Scenario)
+  Simulates: Chat logs, prompts, code comments
+  Total lines: 10,177
+  Unique lines: 8,652
+  Duplicates: 1,525
+  ✅ Deduplication rate: 17.5%
+
+🔍 TEST 2: Segment-Level Deduplication (Document Scenario)
+  Simulates: Document chunks, paragraphs, code blocks
+  Total segments: 2,274
+  Unique segments: 2,184
+  Duplicates: 90
+  ✅ Deduplication rate: 4.0%
+
+🔍 TEST 3: Block-Level Deduplication (Code Scenario)
+  Simulates: Function definitions, import statements, common patterns
+  Total blocks: 2,698
+  Unique blocks: 2,602
+  Duplicates: 96
+  ✅ Deduplication rate: 3.6%
+
+======================================================================
+Analyzing: PromptForge
+======================================================================
+
+📁 Files found: 7
+📊 Total content: 63,695 bytes (0.06 MB)
+
+🔍 TEST 1: Line-Level Deduplication (Prompt Scenario)
+  Simulates: Chat logs, prompts, code comments
+  Total lines: 1,545
+  Unique lines: 1,272
+  Duplicates: 273
+  ✅ Deduplication rate: 20.6%
+
+🔍 TEST 2: Segment-Level Deduplication (Document Scenario)
+  Simulates: Document chunks, paragraphs, code blocks
+  Total segments: 255
+  Unique segments: 248
+  Duplicates: 7
+  ✅ Deduplication rate: 2.8%
+
+🔍 TEST 3: Block-Level Deduplication (Code Scenario)
+  Simulates: Function definitions, import statements, common patterns
+  Total blocks: 248
+  Unique blocks: 239
+  Duplicates: 9
+  ✅ Deduplication rate: 3.7%
+
+======================================================================
+Analyzing: SOLLOL
+======================================================================
+
+📁 Files found: 299
+📊 Total content: 2,897,526 bytes (2.76 MB)
+
+🔍 TEST 1: Line-Level Deduplication (Prompt Scenario)
+  Simulates: Chat logs, prompts, code comments
+  Total lines: 71,952
+  Unique lines: 56,749
+  Duplicates: 15,203
+  ✅ Deduplication rate: 25.6%
+
+🔍 TEST 2: Segment-Level Deduplication (Document Scenario)
+  Simulates: Document chunks, paragraphs, code blocks
+  Total segments: 1,568
+  Unique segments: 1,441
+  Duplicates: 127
+  ✅ Deduplication rate: 8.1%
+
+🔍 TEST 3: Block-Level Deduplication (Code Scenario)
+  Simulates: Function definitions, import statements, common patterns
+  Total blocks: 1,457
+  Unique blocks: 1,378
+  Duplicates: 79
+  ✅ Deduplication rate: 5.4%
+
+======================================================================
+Analyzing: SynapticLlamas
+======================================================================
+
+📁 Files found: 165
+📊 Total content: 1,369,474 bytes (1.31 MB)
+
+🔍 TEST 1: Line-Level Deduplication (Prompt Scenario)
+  Simulates: Chat logs, prompts, code comments
+  Total lines: 33,302
+  Unique lines: 27,755
+  Duplicates: 5,547
+  ✅ Deduplication rate: 20.1%
+
+🔍 TEST 2: Segment-Level Deduplication (Document Scenario)
+  Simulates: Document chunks, paragraphs, code blocks
+  Total segments: 2,080
+  Unique segments: 1,988
+  Duplicates: 92
+  ✅ Deduplication rate: 4.4%
+
+🔍 TEST 3: Block-Level Deduplication (Code Scenario)
+  Simulates: Function definitions, import statements, common patterns
+  Total blocks: 1,943
+  Unique blocks: 1,860
+  Duplicates: 83
+  ✅ Deduplication rate: 4.3%
+
+======================================================================
+Analyzing: product_qa_app
+======================================================================
+
+📁 Files found: 2
+📊 Total content: 3,982 bytes (0.00 MB)
+
+🔍 TEST 1: Line-Level Deduplication (Prompt Scenario)
+  Simulates: Chat logs, prompts, code comments
+  Total lines: 102
+  Unique lines: 100
+  Duplicates: 2
+  ✅ Deduplication rate: 2.3%
+
+🔍 TEST 2: Segment-Level Deduplication (Document Scenario)
+  Simulates: Document chunks, paragraphs, code blocks
+  Total segments: 23
+  Unique segments: 23
+  Duplicates: 0
+  ✅ Deduplication rate: 0.0%
+
+🔍 TEST 3: Block-Level Deduplication (Code Scenario)
+  Simulates: Function definitions, import statements, common patterns
+  Total blocks: 19
+  Unique blocks: 19
+  Duplicates: 0
+  ✅ Deduplication rate: 0.0%
+
+██████████████████████████████████████████████████████████████████████
+  SUMMARY: Actual Deduplication Rates Across Real Codebases
+██████████████████████████████████████████████████████████████████████
+
+📊 Analyzed 5 repositories:
+
+Repository                   Files  Size (MB)     Line    Segment    Block
+──────────────────────────────────────────────────────────────────────
+HydraContext                    53       0.38   17.5%      4.0%    3.6%
+PromptForge                      7       0.06   20.6%      2.8%    3.7%
+SOLLOL                         299       2.76   25.6%      8.1%    5.4%
+SynapticLlamas                 165       1.31   20.1%      4.4%    4.3%
+product_qa_app                   2       0.00    2.3%      0.0%    0.0%
+──────────────────────────────────────────────────────────────────────
+TOTAL                          526       4.51
+
+📈 AVERAGE DEDUPLICATION RATES:
+  Line-level (prompts):     17.2%
+  Segment-level (documents): 3.9%
+  Block-level (code):        3.4%
+
+📊 RANGES:
+  Line-level:    2.3% - 25.6%
+  Segment-level: 0.0% - 8.1%
+  Block-level:   0.0% - 5.4%
+
+💰 TOKEN COST IMPACT (based on actual deduplication rates):
+
+  Example: 100K prompts with 3.9% actual deduplication
+  Original cost:  $675.00
+  With dedup:     $648.89
+  💰 SAVINGS:     $26.11 (3.9%)
+
+✅ VERIFIED CLAIMS FOR README:
+  Based on 5 real codebases analyzing 526 files
+  Actual deduplication rates: 0%-8%
+  Average savings: 4%
+  Conservative claim: 3-5% token cost reduction
