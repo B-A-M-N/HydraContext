@@ -16,7 +16,7 @@ setup(
     description="LLM context processing: bidirectional normalization, prompt/response processing, and intelligent text segmentation",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/BenevolentJoker-JohnL/HydraContext",
+    url="https://github.com/B-A-M-N/HydraContext",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 3 - Alpha",

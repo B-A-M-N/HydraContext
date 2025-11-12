@@ -174,5 +174,5 @@ HydraContext follows [Semantic Versioning](https://semver.org/):
 
 ---
 
-[Unreleased]: https://github.com/BenevolentJoker-JohnL/HydraContext/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/BenevolentJoker-JohnL/HydraContext/releases/tag/v0.1.0
+[Unreleased]: https://github.com/B-A-M-N/HydraContext/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/B-A-M-N/HydraContext/releases/tag/v0.1.0

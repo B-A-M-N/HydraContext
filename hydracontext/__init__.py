@@ -1,12 +1,28 @@
 """
-HydraContext - Intelligent context chunking for LLM memory systems.
+HydraContext - Universal JSON I/O Layer for LLM Pipelines
 
-A robust text segmentation, deduplication, and context normalization library
-designed for Hydra's memory layer and LLM pipelines.
+Enforces lossless, deterministic JSON format for all LLM interactions —
+eliminating format drift, validation failures, and fidelity loss in
+multi-model systems.
+
+Core Features:
+- Universal normalize() function (stdlib only, zero dependencies)
+- Bidirectional normalization (input prompts + output responses)
+- Multi-provider support (OpenAI, Anthropic, Ollama)
+- Automatic JSON repair and validation
+- Cross-model communication guarantees
 """
 
 __version__ = "0.1.0"
 __author__ = "HydraContext Contributors"
+
+# ⭐ UNIVERSAL NORMALIZATION - The main entry point
+from hydracontext.normalize import (
+    normalize,
+    normalize_input,
+    normalize_output,
+    normalize_auto,
+)
 
 # Core segmentation and deduplication
 from hydracontext.core.segmenter import ContextSegmenter
@@ -24,6 +40,11 @@ from hydracontext.core.provider_parsers import UnifiedResponseParser
 from hydracontext.api import HydraContextAPI
 
 __all__ = [
+    # ⭐ Universal normalization (primary interface)
+    "normalize",
+    "normalize_input",
+    "normalize_output",
+    "normalize_auto",
     # Core functionality
     "ContextSegmenter",
     "ContentDeduplicator",

@@ -26,7 +26,7 @@ Thank you for your interest in contributing to HydraContext! This document provi
 
 ```bash
 # Clone your fork
-git clone https://github.com/BenevolentJoker-JohnL/HydraContext.git
+git clone https://github.com/B-A-M-N/HydraContext.git
 cd HydraContext
 
 # Create virtual environment
